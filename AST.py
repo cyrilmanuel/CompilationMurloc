@@ -10,6 +10,7 @@ est une utilisation un peu "limite" de graphviz. Ça marche, mais le layout n'est
 pas toujours optimal...
 '''
 import sys
+sys.path.insert(0,'./pydot-1.0.3')
 import pydot
 
 
