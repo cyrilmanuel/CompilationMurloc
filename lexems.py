@@ -1,15 +1,18 @@
-""" permet de définir les différent bloc séparable d'une instruction. """
-
 import ply.lex as lex
 
-tokens = (
-    'NUMBER', # nombre
-    'ADD_OP', # adition ou soustraction
-    'MUL_OP', # multiplication ou division
-    'IDENTIFIER', # lettre a-z
+reserved_words = (
+    'while',
+    'print'
 )
 
-literals = '();='
+tokens = (
+             'NUMBER',
+             'ADD_OP',
+             'MUL_OP',
+             'IDENTIFIER',
+         ) + tuple(map(lambda s: s.upper(), reserved_words))
+
+literals = '();={}'
 
 
 def t_ADD_OP(t):
@@ -34,6 +37,8 @@ def t_NUMBER(t):
 
 def t_IDENTIFIER(t):
     r'[A-Za-z_]\w*'
+    if t.value in reserved_words:
+        t.type = t.value.upper()
     return t
 
 
