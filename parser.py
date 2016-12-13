@@ -23,7 +23,7 @@ def p_statement(p):
 
 
 def p_statement_print(p):
-    ''' statement : PRINT expression '''
+    ''' statement : SLARK expression '''
     p[0] = AST.PrintNode(p[2])
 
 

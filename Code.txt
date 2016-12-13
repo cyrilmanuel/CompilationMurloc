@@ -1,5 +1,6 @@
 a=0;
 while (a-10) {
 print a;
+Slark 3;
 a = a+1
 }

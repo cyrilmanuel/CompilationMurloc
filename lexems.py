@@ -2,7 +2,12 @@ import ply.lex as lex
 
 reserved_words = (
     'while',
-    'print'
+    'Slark',  #= print
+    'brglmurgl', #= for
+	'ahlurglgr', # = if
+    'lurgglbr',  # = else
+    'Mmmrrrggglll',# = switch
+          #= case
 )
 
 tokens = (
@@ -10,6 +15,7 @@ tokens = (
              'ADD_OP',
              'MUL_OP',
              'IDENTIFIER',
+             'TYPES',
          ) + tuple(map(lambda s: s.upper(), reserved_words))
 
 literals = '();={}'
