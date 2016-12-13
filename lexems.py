@@ -1,10 +1,12 @@
+""" permet de définir les différent bloc séparable d'une instruction. """
+
 import ply.lex as lex
 
 tokens = (
-    'NUMBER',
-    'ADD_OP',
-    'MUL_OP',
-    'IDENTIFIER',
+    'NUMBER', # nombre
+    'ADD_OP', # adition ou soustraction
+    'MUL_OP', # multiplication ou division
+    'IDENTIFIER', # lettre a-z
 )
 
 literals = '();='

@@ -2,6 +2,8 @@ import ply.yacc as yacc
 
 from lexems import tokens
 
+"""  """
+
 import AST
 
 operations = {
@@ -73,6 +75,8 @@ yacc.yacc(outputdir='generated')
 if __name__ == "__main__":
     import sys
 
+
+    #lecture du fichier en argument
     prog = open(sys.argv[1]).read()
     ast = yacc.parse(prog)
     print(ast)
