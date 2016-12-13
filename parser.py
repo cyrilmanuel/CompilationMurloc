@@ -1,8 +1,7 @@
 import ply.yacc as yacc
 
-from lex4 import tokens
+from lexems import tokens
 
-import AST
 
 operations = {
     '+': lambda x, y: x + y,
