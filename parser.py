@@ -7,7 +7,8 @@ vars = {}
 
 
 def p_programme_statement(p):
-    ''' programme : statement '''
+    ''' programme : statement
+            | declaration '''
     p[0] = AST.ProgramNode(p[1])
 
 
@@ -15,22 +16,42 @@ def p_programme_recursive(p):
     ''' programme : statement ';' programme '''
     p[0] = AST.ProgramNode([p[1]] + p[3].children)
 
+def p_programme_recursiveType(p):
+    ''' programme : declaration ';' programme '''
+    p[0] = AST.ProgramNode([p[1]] + p[3].children)
+
 
 def p_statement(p):
     ''' statement : assignation
-        | structure '''
+                | structure '''
     p[0] = p[1]
 
+def p_declaration(p):
+    ''' declaration : int IDENTIFIER '''
+    p[0] = p[2]
 
-def p_statement_print(p):
+
+def p_statement_slark(p):
     ''' statement : SLARK expression '''
-    p[0] = AST.PrintNode(p[2])
+    p[0] = AST.SlarkNode(p[2])
+
+def p_statement_int(p):
+    ''' statement : INT statement '''
+    p[0] = AST.IntNode(p[2])
 
 
-def p_structure(p):
+def p_structure_while(p):
     ''' structure : WHILE expression '{' programme '}' '''
     p[0] = AST.WhileNode([p[2], p[4]])
 
+
+def p_structure_ahlurglgr(p):
+    ''' structure : AHLURGLGR expression '{' programme '}' '''
+    p[0] = AST.IfNode([p[2], p[4]])
+
+def p_structure_lurgglbr(p):
+    ''' structure : LURGGLBR '{' programme '}' '''
+    p[0] = AST.ElseNode([p[3]])
 
 def p_expression_op(p):
     '''expression : expression ADD_OP expression
@@ -42,11 +63,6 @@ def p_expression_num_or_var(p):
     '''expression : NUMBER
         | IDENTIFIER '''
     p[0] = AST.TokenNode(p[1])
-
-
-def p_expression_paren(p):
-    '''expression : '(' expression ')' '''
-    p[0] = p[2]
 
 
 def p_minus(p):

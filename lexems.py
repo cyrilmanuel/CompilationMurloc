@@ -1,12 +1,18 @@
 import ply.lex as lex
 
 reserved_words = (
+    'int',  # int
+    'float',  # float
+    'string',  # string
+    'bool',  # bool
     'while',
     'Slark',  #= print
-    'brglmurgl', #= for
-	'ahlurglgr', # = if
+    'ahlurglgr', # = if
     'lurgglbr',  # = else
-    'Mmmrrrggglll',# = switch
+
+    #'brglmurgl', #= for
+	#'ahlurglgr', # = if
+    #'Mmmrrrggglll',# = switch
           #= case
 )
 
@@ -15,7 +21,6 @@ tokens = (
              'ADD_OP',
              'MUL_OP',
              'IDENTIFIER',
-             'TYPES',
          ) + tuple(map(lambda s: s.upper(), reserved_words))
 
 literals = '();={}'
@@ -39,7 +44,6 @@ def t_NUMBER(t):
         print("Line %d: Problem while parsing %s!" % (t.lineno, t.value))
         t.value = 0
     return t
-
 
 def t_IDENTIFIER(t):
     r'[A-Za-z_]\w*'

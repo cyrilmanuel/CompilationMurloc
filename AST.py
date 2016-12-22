@@ -10,7 +10,8 @@ est une utilisation un peu "limite" de graphviz. Ça marche, mais le layout n'est
 pas toujours optimal...
 '''
 import sys
-sys.path.insert(0,'./pydot-1.0.3')
+
+sys.path.insert(0, './pydot-1.0.3')
 import pydot
 
 
@@ -128,12 +129,24 @@ class AssignNode(Node):
     type = '='
 
 
-class PrintNode(Node):
-    type = 'print'
+class SlarkNode(Node):
+    type = 'slark'
 
 
 class WhileNode(Node):
     type = 'while'
+
+
+class IfNode(Node):
+    type = 'ahlurglgr'
+
+
+class IntNode(Node):
+    type = 'int'
+
+
+class ElseNode(Node):
+    type = 'lurgglbr'
 
 
 class EntryNode(Node):
