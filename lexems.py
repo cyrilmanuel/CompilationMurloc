@@ -1,8 +1,19 @@
 import ply.lex as lex
 
 reserved_words = (
+    'int',  # int
+    'float',  # float
+    'string',  # string
+    'bool',  # bool
     'while',
-    'print'
+    'Slark',  #= print
+    'ahlurglgr', # = if
+    'lurgglbr',  # = else
+
+    #'brglmurgl', #= for
+	#'ahlurglgr', # = if
+    #'Mmmrrrggglll',# = switch
+          #= case
 )
 
 tokens = (
@@ -33,7 +44,6 @@ def t_NUMBER(t):
         print("Line %d: Problem while parsing %s!" % (t.lineno, t.value))
         t.value = 0
     return t
-
 
 def t_IDENTIFIER(t):
     r'[A-Za-z_]\w*'
