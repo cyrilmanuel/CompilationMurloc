@@ -1,8 +1,8 @@
 import ply.lex as lex
 
 reserved_words = (
-	'while',
-	'print',
+	'brack',  # while
+	'print',  # print
     'scargil'  # un if
 )
 
@@ -12,12 +12,17 @@ tokens = (
 	'MUL_OP',
 	'IDENTIFIER',
     'EQUAL',
+    'TYPE_DEF',
 ) + tuple(map(lambda s:s.upper(),reserved_words))
 
 literals = '();{}'
 
 def t_EQUAL(t):
     r'slark'
+    return t
+
+def t_TYPE_DEF(t):
+    r'int|float|double'
     return t
 
 def t_ADD_OP(t):

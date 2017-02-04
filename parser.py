@@ -15,16 +15,18 @@ def p_programme_recursive(p):
 
 def p_statement(p):
     ''' statement : assignation
-        | structure '''
+        | structure
+        | declaration '''
     p[0] = p[1]
     	
 def p_statement_print(p):
     ''' statement : PRINT expression '''
     p[0] = AST.PrintNode(p[2])
 
+
 def p_structure_While(p):
-    ''' structure : WHILE expression '{' programme '}' '''
-    p[0] = AST.WhileNode([p[2],p[4]])
+    ''' structure : BRACK expression '{' programme '}' '''
+    p[0] = AST.BrackNode([p[2], p[4]])
 
 def p_structure_IF(p):
     ''' structure : SCARGIL expression '{' programme '}' '''
@@ -48,10 +50,13 @@ def p_minus(p):
     ''' expression : ADD_OP expression %prec UMINUS'''
     p[0] = AST.OpNode(p[1], [p[2]])
 
+def p_declaration(p):
+    ''' declaration : TYPE_DEF assignation '''
+    p[0] = AST.DeclarationNode([AST.TokenNode(p[1]), p[2]])
 
 def p_assign(p):
     ''' assignation : IDENTIFIER EQUAL expression '''
-    p[0] = AST.AssignNode([AST.TokenNode(p[1]),p[3]])
+    p[0] = AST.AssignNode([AST.TokenNode(p[1]), p[3]])
 
 
 def p_error(p):

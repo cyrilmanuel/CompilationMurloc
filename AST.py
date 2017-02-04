@@ -105,7 +105,7 @@ class TokenNode(Node):
     
 class OpNode(Node):
     def __init__(self, op, children):
-        Node.__init__(self,children)
+        Node.__init__(self, children)
         self.op = op
         try:
             self.nbargs = len(children)
@@ -121,11 +121,14 @@ class AssignNode(Node):
 class PrintNode(Node):
     type = 'print'
     
-class WhileNode(Node):
-    type = 'while'
+class BrackNode(Node):
+    type = 'brack'
 
 class ScargilNode(Node):
     type = 'scargil'
+
+class DeclarationNode(Node):
+    type = 'declaration'
     
 class EntryNode(Node):
     type = 'ENTRY'
