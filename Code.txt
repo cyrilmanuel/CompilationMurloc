@@ -14,7 +14,7 @@ scargil ( f slarky b ) {
  f slark f + 2
 };
 b slark 0;
-fondeboue ( i + 2 ) {
+fondeboue ( f slark 0 ; f littleslark 2 ; f slark f + 2 ) {
 bourbie a
 }
 

@@ -29,8 +29,8 @@ def p_statement_print(p):
 
 
 def p_structure_For(p):
-    ''' structure : FONDEBOUE expression '{' programme '}' '''
-    p[0] = AST.ForNode([p[2], p[4]])
+    ''' structure : FONDEBOUE '(' assignation ';' expression ';' assignation ')' '{' programme '}' '''
+    p[0] = AST.ForNode([p[3], p[5], p[7], p[10]])
 
 
 def p_structure_While(p):
@@ -39,10 +39,9 @@ def p_structure_While(p):
 
 
 def p_structure_IF(p):
-    ''' structure : SCARGIL '(' testegalite ')' '{' programme '}'
-        | SCARGIL '(' testpluspetitegale ')' '{' programme '}'
-        | SCARGIL '(' testplusgrandegale ')' '{' programme '}' '''
-    p[0] = AST.ScargilNode([p[2], p[5]])
+    ''' structure : SCARGIL expression '{' programme '}' '''
+    p[0] = AST.ScargilNode([p[2], p[4]])
+
 
 def p_expression_op(p):
     '''expression : expression ADD_OP expression
@@ -54,6 +53,13 @@ def p_expression_num_or_var(p):
     '''expression : NUMBER
         | IDENTIFIER '''
     p[0] = AST.TokenNode(p[1])
+
+
+def p_expression_testconditionnel(p):
+    '''expression : testegalite
+        | testpluspetitegale
+        | testplusgrandegale '''
+    p[0] = p[1]
 
 
 def p_expression_paren(p):
