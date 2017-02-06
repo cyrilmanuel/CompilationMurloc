@@ -39,11 +39,10 @@ def p_structure_While(p):
 
 
 def p_structure_IF(p):
-    ''' structure : SCARGIL testegalite '{' programme '}'
-        | SCARGIL testpluspetitegale '{' programme '}'
-        | SCARGIL testplusgrandegale '{' programme '}' '''
-    p[0] = AST.ScargilNode([p[2], p[4]])
-
+    ''' structure : SCARGIL '(' testegalite ')' '{' programme '}'
+        | SCARGIL '(' testpluspetitegale ')' '{' programme '}'
+        | SCARGIL '(' testplusgrandegale ')' '{' programme '}' '''
+    p[0] = AST.ScargilNode([p[2], p[5]])
 
 def p_expression_op(p):
     '''expression : expression ADD_OP expression

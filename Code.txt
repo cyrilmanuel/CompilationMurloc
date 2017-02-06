@@ -10,7 +10,7 @@ brack (a-10) {
 bourbie a;
 a slark a+1
 };
-scargil ( f littleslark 2 ) {
+scargil ( f slarky b ) {
  f slark f + 2
 };
 b slark 0;
