@@ -114,18 +114,31 @@ class OpNode(Node):
         
     def __repr__(self):
         return "%s (%s)" % (self.op, self.nbargs)
-    
+
+
+class doubleEqualNode(Node):
+    type = 'slarky'
+
 class AssignNode(Node):
     type = 'slark'
     
 class PrintNode(Node):
-    type = 'print'
+    type = 'bourbie'
     
 class BrackNode(Node):
     type = 'brack'
 
+class ForNode(Node):
+    type = 'fondeboue'
+
 class ScargilNode(Node):
     type = 'scargil'
+
+class PlusPetitEgaleNode(Node):
+    type = 'littleslark'
+
+class PlusGrandEgaleNode(Node):
+    type = 'bigslark'
 
 class DeclarationNode(Node):
     type = 'declaration'

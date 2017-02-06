@@ -1,11 +1,20 @@
-a slark 0;
-a slark 1 + 2;
+double a slark 0.0;
+float b slark 2.0;
+int c slark 3;
+
+a slark a + 2.0;
+
+b slarky 1;
 int b slark 100;
 brack (a-10) {
-print a;
+bourbie a;
 a slark a+1
 };
-scargil (f + 2) {
+scargil ( f littleslark 2 ) {
  f slark f + 2
+};
+b slark 0;
+fondeboue ( i + 2 ) {
+bourbie a
 }
 
