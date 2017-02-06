@@ -18,9 +18,14 @@ tokens = (
 	'MUL_OP',
 	'IDENTIFIER',
     'TYPE_DEF',
+    'STRING',
 ) + tuple(map(lambda s:s.upper(),reserved_words))
 
 literals = '()<>;{}'
+
+def t_STRING(t):
+    r'".+"'
+    return t
 
 def t_TYPE_DEF(t):
     r'int|float|double'

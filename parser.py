@@ -24,8 +24,9 @@ def p_statement(p):
 
 
 def p_statement_print(p):
-    ''' statement : BOURBIE expression '''
-    p[0] = AST.PrintNode(p[2])
+    ''' statement : BOURBIE expression
+        | BOURBIE STRING '''
+    p[0] = AST.PrintNode(AST.TokenNode(p[2]))
 
 
 def p_structure_For(p):

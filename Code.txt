@@ -8,6 +8,7 @@ b slarky 1;
 int b slark 100;
 brack (a-10) {
 bourbie a;
+bourbie "salut";
 a slark a+1
 };
 scargil ( f slarky b ) {
