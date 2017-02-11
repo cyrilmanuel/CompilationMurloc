@@ -1,21 +1,26 @@
-double a slark 0.0;
-float b slark 2.0;
-int c slark 3;
-
-a slark a + 2.0;
-
-b slarky 1;
-int b slark 100;
-brack (a-10) {
+brglmurgl a slark 2;
+ahlurglgr B slark 3;
+lurgglbr c slark 5;
+a slark a + 2;
 bourbie a;
-bourbie "salut";
-a slark a+1
+bourbie "salut toi";
+scargil (a + 2 bigslark 2) {
+bourbie "j'aime les murlocs"
 };
-scargil ( f slarky b ) {
- f slark f + 2
+a slark b;
+fondeboue ( i slark 0 ; i slarky 2; i slark i + 1) {
+bourbie i
 };
-b slark 0;
-fondeboue ( f slark 0 ; f littleslark 2 ; f slark f + 2 ) {
+a slark b;
+switch (a) {
+case 2:
 bourbie a
+break;
+case 3:
+bourbie a;
+a slark a + 2
+break;
+case default :
+bourbie b
+break;
 }
-

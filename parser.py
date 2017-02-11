@@ -15,12 +15,14 @@ def p_programme_recursive(p):
     p[0] = AST.ProgramNode([p[1]] + p[3].children)
 
 
-def p_statement(p):
-    ''' statement : assignation
-        | structure
-        | declaration
-        | testegalite '''
-    p[0] = p[1]
+def p_programmeswitch_statement(p):
+    ''' programmeswitch : CASE NUMBER ':' programme BREAK ';'
+                        | CASE DEFAULT ':' programme BREAK ';' '''
+    p[0] = AST.CaseNode([AST.TokenNode(p[2]), p[4]])
+
+def p_programmeswitch_recursive(p):
+    ''' programmeswitch : CASE NUMBER ':' programme BREAK ';' programmeswitch '''
+    p[0] = AST.CaseNode([AST.TokenNode(p[2]), p[4]] + p[7].children)
 
 
 def p_statement_print(p):
@@ -29,24 +31,62 @@ def p_statement_print(p):
     p[0] = AST.PrintNode(AST.TokenNode(p[2]))
 
 
+def p_statement(p):
+    ''' statement : assignation
+        | structure
+        | declaration '''
+    p[0] = p[1]
+
+
+def p_assign(p):
+    ''' assignation : IDENTIFIER SLARK expression '''
+    p[0] = AST.AssignNode([AST.TokenNode(p[1]), p[3]])
+
+
+def p_structure_Switch(p):
+    ''' structure : SWITCH '(' IDENTIFIER ')' '{' programmeswitch '}' '''
+    p[0] = AST.SwitchNode([AST.TokenNode(p[3]), p[6]])
+
 def p_structure_For(p):
-    ''' structure : FONDEBOUE '(' assignation ';' expression ';' assignation ')' '{' programme '}' '''
+    ''' structure : FONDEBOUE '(' assignation ';' condition ';' assignation ')' '{' programme '}'
+                  | FONDEBOUE '(' declaration ';' condition ';' assignation ')' '{' programme '}' '''
     p[0] = AST.ForNode([p[3], p[5], p[7], p[10]])
 
 
 def p_structure_While(p):
-    ''' structure : BRACK expression '{' programme '}' '''
-    p[0] = AST.BrackNode([p[2], p[4]])
+    ''' structure : BRACK '(' condition ')' '{' programme '}' '''
+    p[0] = AST.WhileNode([p[3], p[6]])
 
 
 def p_structure_IF(p):
-    ''' structure : SCARGIL expression '{' programme '}' '''
-    p[0] = AST.ScargilNode([p[2], p[4]])
+    ''' structure : SCARGIL '(' condition ')' '{' programme '}' '''
+    p[0] = AST.ScargilNode([p[3], p[6]])
+
+
+def p_declaration(p):
+    ''' declaration : TYPE_DEF assignation '''
+    p[0] = AST.DeclarationNode([AST.TokenNode(p[1]), p[2]])
+
+
+def p_expression_paren(p):
+    '''expression : '(' expression ')' '''
+    p[0] = p[2]
+
+
+def p_condition(p):
+    '''condition : expression SLARKY expression
+                 | expression JINYU expression
+                 | expression BIGSLARK expression
+                 | expression LITTLESLARK expression
+                 | expression BIGY expression
+                 | expression LITTY expression
+                 '''
+    p[0] = AST.ConditionNode([p[1], AST.TokenNode(p[2]), p[3]])
 
 
 def p_expression_op(p):
     '''expression : expression ADD_OP expression
-            | expression MUL_OP expression'''
+            | expression MUL_OP expression '''
     p[0] = AST.OpNode(p[2], [p[1], p[3]])
 
 
@@ -56,49 +96,9 @@ def p_expression_num_or_var(p):
     p[0] = AST.TokenNode(p[1])
 
 
-def p_expression_testconditionnel(p):
-    '''expression : testegalite
-        | testpluspetitegale
-        | testplusgrandegale '''
-    p[0] = p[1]
-
-
-def p_expression_paren(p):
-    '''expression : '(' expression ')' '''
-    p[0] = p[2]
-
-
 def p_minus(p):
-    ''' expression : ADD_OP expression %prec UMINUS'''
+    ''' expression : ADD_OP expression %prec UMINUS '''
     p[0] = AST.OpNode(p[1], [p[2]])
-
-
-def p_declaration(p):
-    ''' declaration : TYPE_DEF assignation '''
-    p[0] = AST.DeclarationNode([AST.TokenNode(p[1]), p[2]])
-
-
-def p_assign(p):
-    ''' assignation : IDENTIFIER SLARK expression '''
-    p[0] = AST.AssignNode([AST.TokenNode(p[1]), p[3]])
-
-
-def p_testegalite(p):
-    ''' testegalite : IDENTIFIER SLARKY NUMBER
-    | IDENTIFIER SLARKY IDENTIFIER '''
-    p[0] = AST.doubleEqualNode([AST.TokenNode(p[1]), AST.TokenNode(p[3])])
-
-
-def p_testpluspetitegale(p):
-    ''' testpluspetitegale : IDENTIFIER LITTLESLARK NUMBER
-    | IDENTIFIER LITTLESLARK IDENTIFIER '''
-    p[0] = AST.PlusPetitEgaleNode([AST.TokenNode(p[1]), AST.TokenNode(p[3])])
-
-
-def p_testplusgrandegale(p):
-    ''' testplusgrandegale : IDENTIFIER BIGSLARK NUMBER
-    | IDENTIFIER BIGSLARK IDENTIFIER '''
-    p[0] = AST.PlusGrandEgaleNode([AST.TokenNode(p[1]), AST.TokenNode(p[3])])
 
 
 def p_error(p):
