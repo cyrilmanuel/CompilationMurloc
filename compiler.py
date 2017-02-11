@@ -36,10 +36,10 @@ op = {
 
 # PROGRAMS
 @addToClass(AST.ProgramNode)
-def compile(self, prefix=''):
+def compile(self):
     c_code = ""
     for c in self.children:
-            c_code += c.compile()
+        c_code += c.compile()
     return c_code
 
 
@@ -59,17 +59,17 @@ def compile(self):
     return "{} {} {}".format(c[0], op[self.op], c[1])
 
 
-
 @addToClass(AST.AssignNode)
 def compile(self):
     vars[self.children[0].tok] = self.children[1].compile()
+    return "{}={};\n".format(self.children[0].tok, self.children[1].compile())
+
 
 
 @addToClass(AST.PrintNode)
 def compile(self):
-    strw = "print({});".format(self.children[0].compile())
-    print(strw)
-    return strw
+    return "print({});\n".format(self.children[0].compile().tok)
+
 
 if __name__ == '__main__':
     from parser import parse
