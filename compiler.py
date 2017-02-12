@@ -20,10 +20,10 @@ vartypes = {
 }
 
 conditions = {
-    'bigy': '>',
-    'bigslark': '>=',
-    'litty': '<',
     'littleslark': '<=',
+    'bigslark': '>=',
+    'bigy': '>',
+    'litty': '<',
     'slarky': '==',
     'jinyu': '!='
 }
@@ -35,16 +35,17 @@ op = {
     '-': '/'
 }
 
-keyWord = {
-    'f'
-}
 
 # PROGRAMS
 @addToClass(AST.ProgramNode)
 def compile(self, prefix=''):
     c_code = ""
     for c in self.children:
-        c_code += c.compile(prefix) + "\n"
+        print(c.type)
+        c_code += c.compile(prefix)
+        if c.type == 'declaration' or c.type == 'slark':
+            c_code += ";"
+        c_code += "\n"
     return c_code
 
 
@@ -77,8 +78,6 @@ def compile(self, prefix=''):
 @addToClass(AST.PrintNode)
 def compile(self, prefix=''):
     return "{}print({});".format(prefix, self.children[0].compile(prefix).tok)
-
-
 
 
 @addToClass(AST.ScargilNode)
