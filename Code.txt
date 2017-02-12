@@ -6,15 +6,30 @@ a slark 10;
 a slark b + 2;
 bourbie b;
 scargil (a + 2 bigslark 2) {
+scargil (a + 2 bigslark 2) {
 bourbie "badas";
 a slark 20
+}
 };
 fondeboue (brglmurgl i slark 0 ; i slarky 2; i slark i + 1) {
+fondeboue (brglmurgl i slark 0 ; i slarky 2; i slark i + 1) {
 bourbie i
+}
 };
 gelihast (a) {
 glougloug 2:
-bourbie a
+gelihast (a) {
+glougloug 2:
+bourbie 2
+sir;
+glougloug 3:
+bourbie a;
+a slark a + 2
+sir;
+glougloug default :
+bourbie b
+sir;
+}
 sir;
 glougloug 3:
 bourbie a;
@@ -25,5 +40,7 @@ bourbie b
 sir;
 };
 brack (i littleslark 5){
+    brack (i littleslark 5){
     bourbie d
+    }
 }
