@@ -1,6 +1,5 @@
 import AST
 from AST import addToClass
-from functools import reduce
 
 operations = {
     '*': lambda x, y: x + y,
@@ -10,11 +9,14 @@ operations = {
 }
 
 vars = {}
-suffix = "   "
+
+TABULATION = '   '
+
 vartypes = {
     'brglmurgl': 'int',
     'lurgglbr': 'float',
     'ahlurglgr': 'double',
+    'mourbile': 'string',
 }
 
 conditions = {
@@ -36,69 +38,85 @@ op = {
 
 # PROGRAMS
 @addToClass(AST.ProgramNode)
-def compile(self):
+def compile(self, prefix=''):
     c_code = ""
     for c in self.children:
-        c_code += c.compile() + "\n"
+        c_code += c.compile(prefix) + "\n"
     return c_code
 
 
 @addToClass(AST.TokenNode)
-def compile(self):
-   # if isinstance(self.tok, str):
+def compile(self, prefix=''):
+    # if isinstance(self.tok, str):
     #    try:
-     #       return vars[self.tok]
-      #  except KeyError:
-       #     print("∗∗∗ Error: variable %s undefined!" % self.tok)
+    #       return vars[self.tok]
+    #  except KeyError:
+    #     print("∗∗∗ Error: variable %s undefined!" % self.tok)
     return self.tok
 
 
 @addToClass(AST.OpNode)
-def compile(self):
+def compile(self, prefix=''):
     c = [ch.compile() for ch in self.children]
-    return "{}{}{}".format(c[0], op[self.op], c[1])
+    return "{}{}{}{}".format(prefix, c[0], op[self.op], c[1])
 
 
 @addToClass(AST.AssignNode)
-def compile(self):
-    return "{}={}".format(self.children[0].tok, self.children[1].compile())
+def compile(self, prefix=''):
+    return "{}{}={}".format(prefix, self.children[0].tok, self.children[1].compile())
 
 
 @addToClass(AST.DeclarationNode)
-def compile(self):
-    return "{} {}".format(vartypes.get(self.children[0].tok), self.children[1].compile())
+def compile(self, prefix=''):
+    return "{}{} {}".format(prefix, vartypes.get(self.children[0].tok), self.children[1].compile())
+
 
 @addToClass(AST.PrintNode)
-def compile(self):
-    return "print({});".format(self.children[0].compile().tok)
+def compile(self, prefix=''):
+    print(self.children[0].compile(prefix))
+    return "{}print({});".format(prefix, self.children[0].compile(prefix).tok)
+
+
+
 
 @addToClass(AST.ScargilNode)
-def compile(self):
-    return "if({}) \n {{ \n   {} }} ".format(self.children[0].compile(), self.children[1].compile())
+def compile(self, prefix=''):
+    return "if({})\n{{\n{}}} ".format(self.children[0].compile(), self.children[1].compile(prefix + TABULATION))
+
 
 @addToClass(AST.ConditionNode)
-def compile(self):
-    return "{} {} {}".format(self.children[0].compile(), conditions.get(self.children[1].compile()),
-                             self.children[2].compile())
+def compile(self, prefix=''):
+    return "{}{}{}".format(self.children[0].compile(), conditions.get(self.children[1].compile()),
+                           self.children[2].compile())
+
 
 @addToClass(AST.ForNode)
-def compile(self):
-    return "for({};{};{}) \n {{ \n {} }} \n".format(self.children[0].compile(),
-        self.children[1].compile(), self.children[2].compile(), self.children[3].compile())
+def compile(self, prefix=''):
+    return "{}for({};{};{})\n{}{{\n{}{}}}\n".format(prefix, self.children[0].compile(),
+                                                    self.children[1].compile(), self.children[2].compile(), prefix,
+                                                    prefix,
+                                                    self.children[3].compile(prefix + TABULATION))
+
+
+@addToClass(AST.WhileNode)
+def compile(self, prefix=''):
+    return "{}while({})\n{}{{\n{}{}}}\n".format(prefix, self.children[0].compile(prefix), prefix, prefix,
+                                                self.children[1].compile(prefix + TABULATION))
+
 
 @addToClass(AST.SwitchNode)
-def compile(self):
-    return "switch({}){{\n{}}}".format(self.children[0].compile(), self.children[1].compile())
+def compile(self, prefix=''):
+    return "switch({}){{\n{}}}".format(self.children[0].compile(), self.children[1].compile(prefix + TABULATION))
+
 
 @addToClass(AST.CaseNode)
-def compile(self):
+def compile(self, prefix=''):
     c_code = ""
     i = 0
     while i < len(self.children):
         c_code += "case {}:\n".format(self.children[i].compile())
-        c_code += self.children[i+1].compile() + "break; \n"
+        c_code += self.children[i + 1].compile(prefix + TABULATION) + "break; \n"
         i += 2
-
     return c_code
 
 

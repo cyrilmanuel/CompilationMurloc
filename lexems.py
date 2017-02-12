@@ -16,6 +16,7 @@ reserved_words = (
     'break',        # break du switch
     'case',         # case du switch
     'default',      # default du switch
+
 )
 
 tokens = (
@@ -36,7 +37,7 @@ def t_STRING(t):
 
 
 def t_TYPE_DEF(t):
-    r'brglmurgl|ahlurglgr|lurgglbr'
+    r'brglmurgl|ahlurglgr|lurgglbr|mourbile'
     return t
 
 def t_ADD_OP(t):

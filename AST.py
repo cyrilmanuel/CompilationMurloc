@@ -142,6 +142,7 @@ class PlusPetitEgaleNode(Node):
 class PrintNode(Node):
     type = 'bourbie'
 
+
 class CaseNode(Node):
     type = 'case'
 
@@ -149,8 +150,10 @@ class CaseNode(Node):
 class WhileNode(Node):
     type = 'brack'
 
+
 class SwitchNode(Node):
     type = 'switch'
+
 
 class ForNode(Node):
     type = 'fondeboue'

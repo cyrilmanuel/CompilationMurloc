@@ -1,11 +1,12 @@
 brglmurgl a slark 2;
 ahlurglgr B slark 3;
 lurgglbr c slark 5;
+mourbile d slark "salut";
 a slark 10;
 a slark b + 2;
 bourbie b;
 scargil (a + 2 bigslark 2) {
-bourbie badas;
+bourbie "badas";
 a slark 20
 };
 fondeboue (brglmurgl i slark 0 ; i slarky 2; i slark i + 1) {
@@ -22,4 +23,7 @@ break;
 case default :
 bourbie b
 break;
+};
+brack ( i littleslark 5){
+    bourbie d
 }

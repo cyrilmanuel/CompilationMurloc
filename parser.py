@@ -26,8 +26,7 @@ def p_programmeswitch_recursive(p):
 
 
 def p_statement_print(p):
-    ''' statement : BOURBIE expression
-        | BOURBIE STRING '''
+    ''' statement : BOURBIE expression '''
     p[0] = AST.PrintNode(AST.TokenNode(p[2]))
 
 
@@ -92,7 +91,8 @@ def p_expression_op(p):
 
 def p_expression_num_or_var(p):
     '''expression : NUMBER
-        | IDENTIFIER '''
+        | IDENTIFIER
+        | STRING '''
     p[0] = AST.TokenNode(p[1])
 
 
