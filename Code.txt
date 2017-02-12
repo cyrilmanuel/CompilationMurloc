@@ -1,29 +1,29 @@
 brglmurgl a slark 2;
 ahlurglgr B slark 3;
 lurgglbr c slark 5;
-a slark a + 2;
-bourbie a;
-bourbie "salut toi";
+mourbile d slark "salut";
+a slark 10;
+a slark b + 2;
+bourbie b;
 scargil (a + 2 bigslark 2) {
-bourbie "j'aime les murlocs"
+bourbie "badas";
+a slark 20
 };
-a slark b;
-fondeboue ( i slark 0 ; i slarky 2; i slark i + 1) {
+fondeboue (brglmurgl i slark 0 ; i slarky 2; i slark i + 1) {
 bourbie i
 };
-a slark b;
-switch (a) {
-case 2:
+gelihast (a) {
+glougloug 2:
 bourbie a
-break;
-case 3:
+sir;
+glougloug 3:
 bourbie a;
 a slark a + 2
-break;
-case default :
+sir;
+glougloug default :
 bourbie b
-break;
+sir;
 };
-brack ( i littleslark 5){
+brack (i littleslark 5){
     bourbie d
 }

@@ -12,18 +12,18 @@ a slark 20
 fondeboue (brglmurgl i slark 0 ; i slarky 2; i slark i + 1) {
 bourbie i
 };
-switch (a) {
-case 2:
+gelihast (a) {
+glougloug 2:
 bourbie a
-break;
-case 3:
+sir;
+glougloug 3:
 bourbie a;
 a slark a + 2
-break;
-case default :
+sir;
+glougloug default :
 bourbie b
-break;
+sir;
 };
-brack ( i littleslark 5){
+brack (i littleslark 5){
     bourbie d
 }

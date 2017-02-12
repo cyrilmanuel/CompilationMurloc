@@ -12,9 +12,9 @@ reserved_words = (
     'bigslark',     # plus Grand ou égale >=
     'bigy',         # plus Grand
     'litty',        # plus Petit
-    'switch',       # switch
-    'break',        # break du switch
-    'case',         # case du switch
+    'gelihast',     # switch
+    'sir',          # break du switch
+    'glougloug',    # case du switch
     'default',      # default du switch
 
 )

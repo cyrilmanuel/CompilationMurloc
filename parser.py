@@ -16,12 +16,12 @@ def p_programme_recursive(p):
 
 
 def p_programmeswitch_statement(p):
-    ''' programmeswitch : CASE NUMBER ':' programme BREAK ';'
-                        | CASE DEFAULT ':' programme BREAK ';' '''
+    ''' programmeswitch : GLOUGLOUG NUMBER ':' programme SIR ';'
+                        | GLOUGLOUG DEFAULT ':' programme SIR ';' '''
     p[0] = AST.CaseNode([AST.TokenNode(p[2]), p[4]])
 
 def p_programmeswitch_recursive(p):
-    ''' programmeswitch : CASE NUMBER ':' programme BREAK ';' programmeswitch '''
+    ''' programmeswitch : GLOUGLOUG NUMBER ':' programme SIR ';' programmeswitch '''
     p[0] = AST.CaseNode([AST.TokenNode(p[2]), p[4]] + p[7].children)
 
 
@@ -43,7 +43,7 @@ def p_assign(p):
 
 
 def p_structure_Switch(p):
-    ''' structure : SWITCH '(' IDENTIFIER ')' '{' programmeswitch '}' '''
+    ''' structure : GELIHAST '(' IDENTIFIER ')' '{' programmeswitch '}' '''
     p[0] = AST.SwitchNode([AST.TokenNode(p[3]), p[6]])
 
 def p_structure_For(p):

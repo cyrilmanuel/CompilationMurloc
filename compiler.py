@@ -35,6 +35,9 @@ op = {
     '-': '/'
 }
 
+keyWord = {
+    'f'
+}
 
 # PROGRAMS
 @addToClass(AST.ProgramNode)
@@ -73,7 +76,6 @@ def compile(self, prefix=''):
 
 @addToClass(AST.PrintNode)
 def compile(self, prefix=''):
-    print(self.children[0].compile(prefix))
     return "{}print({});".format(prefix, self.children[0].compile(prefix).tok)
 
 
@@ -114,7 +116,7 @@ def compile(self, prefix=''):
     c_code = ""
     i = 0
     while i < len(self.children):
-        c_code += "case {}:\n".format(self.children[i].compile())
+        c_code += "case {}:\n".format(self.children[i].compile(prefix))
         c_code += self.children[i + 1].compile(prefix + TABULATION) + "break; \n"
         i += 2
     return c_code
